@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <style>
+      input {
+        width: 110px;
+      }
+      .title {
+        color: white !important;
+        background-color: rgb(90, 90, 90) !important;
+        text-align: center;
+      }
+      .btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .buttons {
+        margin: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+
+      .textarea {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+    </style>
+    <title>Gerador de Relatório</title>
+  </head>
+  <body>
+    <div class="table-responsive-sm">
+      <table class="table table-striped">
+        <div class="buttons">
+          <button type="button" class="btn btn-primary" onclick="newWeek()">Iniciar Nova Semana</button>
+          <button type="button" class="btn btn-primary" onclick="newMonth()">Iniciar Novo Mês</button>
+        </div>
+        <tr>
+          <td class="title" colspan="4">Info Data e Rota</td>
+        </tr>
+        <tr>
+          <td class="label"><label for="dia">Dia: </label></td>
+          <td><input type="number" id="dia" min="1" max="31" /></td>
+          <td class="label"><label for="mes">Mês: </label></td>
+          <td><input type="number" id="mes" min="1" max="12" /></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="rota">Rota: </label></td>
+          <td colspan="3"><input type="number" id="rota" min="1" /></td>
+        </tr>
+        <tr>
+          <td class="title" colspan="4">Informação venda do dia</td>
+        </tr>
+        <tr>
+          <td class="label"><label for="metaDia">Meta do dia: </label></td>
+          <td colspan="3"><input type="number" step="0.01" id="metaDia" /></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="vendaDia">Venda do dia: </label></td>
+          <td><input type="number" step="0.01" id="vendaDia" /></td>
+          <td class="label"><label for="porcentDia">% do dia: </label></td>
+          <td><input type="number" step="0.01" id="porcentDia" disabled /></td>
+        </tr>
+        <tr>
+          <td class="title" colspan="4">Informação visitas</td>
+        </tr>
+        <tr>
+          <td class="label"><label for="programadas">Visitas Prog</label></td>
+          <td><input type="number" id="programadas" /></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="efetivasFR">Efetivas Fora</label></td>
+          <td><input type="number" id="efetivasFR" /></td>
+          <td class="label"><label for="efetivasDR">Efetivas Roteiro</label></td>
+          <td><input type="number" id="efetivasDR" /></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="porcentEfet" step="0.01">Produtividade</label></td>
+          <td><input type="number" id="porcentEfet" disabled /></td>
+          <td><label for="">Efetivas Semana</label></td>
+          <td><input type="number" id="efetivaSemana" /></td>
+        </tr>
+        <tr>
+          <td class="title" colspan="4">Informação Positivação</td>
+        </tr>
+        <tr>
+          <td class="label"><label for="incentivo">Positivação incentivo</label></td>
+          <td colspan="3"><input class="inputPosit" type="number" id="incentivo" /></td>
+        </tr>
+        <tr>
+          <td colspan="4" class="title">Informação da Semana</td>
+        </tr>
+        <tr>
+          <td class="label"><label for="metaSemana">Meta da Semana</label></td>
+          <td colspan="3"><input type="number" step="0.01" id="metaSemana" /></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="vendaSemana">Venda semana até ontem</label></td>
+          <td><input type="number" step="0.01" id="vendaSemana" /></td>
+          <td class="label"><label for="vendaSemanaAtual">Venda semana -hoje</label></td>
+          <td><input type="number" step="0.01" id="vendaSemanaAtual" disabled /></td>
+        </tr>
+        <tr>
+          <td class="title" colspan="4">Informação do Mês</td>
+        </tr>
+        <tr>
+          <td class="label"><label for="vendaMes">Venda do mês até ontem</label></td>
+          <td><input type="number" id="vendaMes" /></td>
+          <td class="label"><label for="vendaMesAtual">Venda do mês hoje</label></td>
+          <td><input type="number" id="vendaMesAtual" disabled /></td>
+        </tr>
+      </table>
+      <div class="btn">
+        <button class="btn btn-success" id="btnSubmit">Gerar Texto</button>
+      </div>
+    </div>
+    <hr />
+    <div class="textarea">
+      <textarea id="whatsappText" cols="40" rows="30"></textarea>
+    </div>
+    <div class="buttons">
+      <button type="button" class="btn btn-primary" onclick="reset()">Reiniciar</button>
+    </div>
+    <script>
+      const diaIpt = document.getElementById('dia');
+      const mesIpt = document.getElementById('mes');
+      const rotaIpt = document.getElementById('rota');
+      const metaDiaIpt = document.getElementById('metaDia');
+      const vendaDiaIpt = document.getElementById('vendaDia');
+      const porcentDiaIpt = document.getElementById('porcentDia');
+      const programadasIpt = document.getElementById('programadas');
+      const efetivasDRIpt = document.getElementById('efetivasDR');
+      const efetivasFRIpt = document.getElementById('efetivasFR');
+      const porcentEfetIpt = document.getElementById('porcentEfet');
+      const efetivaSemanaIpt = document.getElementById('efetivaSemana');
+      const incentivoIpt = document.getElementById('incentivo');
+      const metaSemanaIpt = document.getElementById('metaSemana');
+      const vendaSemanaIpt = document.getElementById('vendaSemana');
+      const vendaSemanaAtualIpt = document.getElementById('vendaSemanaAtual');
+      const vendaMesIpt = document.getElementById('vendaMes');
+      const vendaMesAtualIpt = document.getElementById('vendaMesAtual');
+
+      let faltaMeta;
+      let infos = JSON.parse(localStorage.getItem('infos'));
+
+      if (!infos) {
+        infos = {
+          dia: '',
+          mes: '',
+          rota: '',
+          efetSemana: '',
+          vSemana: '',
+          vMes: '',
+          mDia: '',
+          mSemana: '',
+        };
+      }
+
+      const listaInputs = document.querySelectorAll('input');
+      console.log(listaInputs);
+
+      diaIpt.value = infos.dia + 1;
+      mesIpt.value = infos.mes;
+      rotaIpt.value = infos.rota;
+      metaDiaIpt.value = infos.mDia;
+      efetivaSemanaIpt.value = infos.efetSemana;
+      metaSemanaIpt.value = infos.mSemana;
+      vendaSemanaIpt.value = infos.vSemana;
+      vendaMesIpt.value = infos.vMes;
+
+      const btnSubmit = document.getElementById('btnSubmit');
+      const btnCopy = document.getElementById('btnCopy');
+
+      btnSubmit.addEventListener('click', (e) => {
+        e.preventDefault();
+        gerarTexto();
+        copiarTexto();
+      });
+
+      vendaDiaIpt.addEventListener('blur', calcDia);
+      vendaDiaIpt.addEventListener('blur', calcSemana);
+      vendaDiaIpt.addEventListener('blur', calcMes);
+      efetivasDRIpt.addEventListener('blur', calcEfetivas);
+      vendaSemanaIpt.addEventListener('blur', calcSemana);
+      vendaMesIpt.addEventListener('blur', calcMes);
+
+      function calcDia() {
+        let metaDia = metaDiaIpt.value;
+        let vendaDia = vendaDiaIpt.value;
+        let porcentDia = ((vendaDia / metaDia) * 100).toFixed(1);
+        porcentDiaIpt.value = porcentDia;
+      }
+
+      function calcEfetivas() {
+        let programadas = programadasIpt.value;
+        let efetivasDR = Number(efetivasDRIpt.value);
+        let efetivasFR = Number(efetivasFRIpt.value);
+        let efetSemana = Number(efetivaSemanaIpt.value);
+        let porcentEfet = (((efetivasDR + efetivasFR) / programadas) * 100).toFixed(1);
+        let efetTotal = efetSemana + efetivasDR + efetivasFR;
+        porcentEfetIpt.value = porcentEfet;
+        efetivaSemanaIpt.value = efetTotal;
+      }
+
+      function calcSemana() {
+        let metaSemana = metaSemanaIpt.value;
+        let vendaSemana = Number(vendaSemanaIpt.value);
+        let vendaDia = Number(vendaDiaIpt.value);
+        let vendaSemanaAtual = vendaSemana + vendaDia;
+        faltaMeta = metaSemana - vendaSemanaAtual;
+        vendaSemanaAtualIpt.value = vendaSemanaAtual;
+      }
+
+      function calcMes() {
+        let vendaMes = Number(vendaMesIpt.value);
+        let vendaDia = Number(vendaDiaIpt.value);
+        let vendaMesAtual = vendaDia + vendaMes;
+        vendaMesAtualIpt.value = vendaMesAtual;
+      }
+
+      function gerarTexto() {
+        let dia = Number(diaIpt.value);
+        if (dia < 10) {
+          dia = `0${dia}`;
+        }
+        let mes = Number(mesIpt.value);
+        if (mes < 10) {
+          mes = `0${mes}`;
+        }
+        let rota = Number(rotaIpt.value);
+        if (rota < 10) {
+          rota = `0${rota}`;
+        }
+        let metaDia = metaDiaIpt.value;
+        let vendaDia = vendaDiaIpt.value;
+        let porcentDia = porcentDiaIpt.value;
+        let programadas = programadasIpt.value;
+        let efetivasDR = efetivasDRIpt.value;
+        let porcentEfet = porcentEfetIpt.value;
+        let efetivasFR = efetivasFRIpt.value;
+        let efetSemana = efetivaSemanaIpt.value;
+        let incentivo = incentivoIpt.value;
+        let metaSemana = metaSemanaIpt.value;
+        let vendaSemana = vendaSemanaIpt.value;
+        let vendaSemanaAtual = vendaSemanaAtualIpt.value;
+        let vendaMes = vendaMesIpt.value;
+        let vendaMesAtual = vendaMesAtualIpt.value;
+
+        let efetivaTotal = efetivasDR + efetivasFR;
+        let efetivaTotalText;
+
+        let faltaMetaText;
+        if (faltaMeta <= 0) {
+          faltaMetaText = '-';
+        } else {
+          faltaMetaText = faltaMeta;
+        }
+
+        if (efetivasFR <= 0) {
+          efetivaTotalText = `${efetivasDR}`;
+        } else {
+          efetivaTotalText = `${efetivasDR} + ${efetivasFR}`;
+        }
+
+        let textoIpt = document.getElementById('whatsappText');
+
+        let texto = `Data: ${dia}/${mes}
+Rota: ${rota}
+
+➡️ *FATURAMENTO*
+✅PDB:
+*Meta /dia* : R$ ${metaDia}
+*VENDA /DIA* : R$ ${vendaDia}
+*perc.%:* ${porcentDia}%
+
+➡️ *EFETIVAS*
+*Progr/dia* : ${programadas}
+*Realiz/dia* : ${efetivaTotalText}
+*prod%:* ${porcentEfet}%
+*Total efetivas semana:* ${efetSemana}
+
+🆕 *POSIT. INCENTIVO* 💯 💲
+Clientes positivados com alguma inovação do incentivo: ${incentivo}
+
+👉 *META semana* : R$ ${metaSemana}
+👉 *Real semana* : R$ ${vendaSemanaAtual}
+👉 *Falta p/ META* : R$ ${faltaMetaText}
+👉 *Real mês* : R$ ${vendaMesAtual}
+
+⚠️Necessita algum apoio do GV? Clientes bloqueados, sem crédito, etc`;
+
+        textoIpt.value = texto;
+      }
+
+      function copiarTexto() {
+        saveToStorage();
+        let textoCopiado = document.getElementById('whatsappText');
+        textoCopiado.select();
+        textoCopiado.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+      }
+
+      function saveToStorage() {
+        let dia = Number(diaIpt.value);
+        let mes = Number(mesIpt.value);
+        let rota = Number(rotaIpt.value);
+        let efetSemana = Number(efetivaSemanaIpt.value);
+        let mDia = Number(metaDiaIpt.value);
+        let mSemana = Number(metaSemanaIpt.value);
+        let vSemana = Number(vendaSemanaAtualIpt.value);
+        let vMes = Number(vendaMesAtualIpt.value);
+
+        infos = {
+          dia: dia,
+          mes: mes,
+          rota: rota,
+          efetSemana: efetSemana,
+          mDia: mDia,
+          mSemana: mSemana,
+          vSemana: vSemana,
+          vMes: vMes,
+        };
+
+        localStorage.setItem('infos', JSON.stringify(infos));
+      }
+
+      function newWeek() {
+        infos.mSemana = '';
+        infos.mDia = '';
+        infos.efetSemana = '';
+        infos.vSemana = '';
+        localStorage.setItem('infos', JSON.stringify(infos));
+        location.reload();
+      }
+
+      function newMonth() {
+        if (infos.mes < 12) {
+          infos.mes++;
+        } else {
+          infos.mes = 1;
+        }
+        infos.dia = '';
+        infos.mDia = '';
+        infos.efetSemana = '';
+        infos.vSemana = '';
+        infos.vMes = '';
+        infos.mSemana = '';
+        localStorage.setItem('infos', JSON.stringify(infos));
+        location.reload();
+      }
+
+      function reset() {
+        localStorage.removeItem('infos');
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
