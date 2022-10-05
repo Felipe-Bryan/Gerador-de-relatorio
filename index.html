@@ -123,6 +123,12 @@
           <td class="label"><label for="vendaMesAtual">Venda do mês hoje</label></td>
           <td><input type="number" id="vendaMesAtual" disabled /></td>
         </tr>
+        <tr>
+          <td class="label"><label for="metaMes">Meta do Mês</label></td>
+          <td><input type="number" id="metaMes" /></td>
+          <td class="label"><label for="porcentMes">Atingido</label></td>
+          <td><input type="number" id="porcentMes" disabled /></td>
+        </tr>
       </table>
       <div class="btn">
         <button class="btn btn-success" id="btnSubmit">Gerar Texto</button>
@@ -153,6 +159,8 @@
       const vendaSemanaAtualIpt = document.getElementById('vendaSemanaAtual');
       const vendaMesIpt = document.getElementById('vendaMes');
       const vendaMesAtualIpt = document.getElementById('vendaMesAtual');
+      const metaMesIpt = document.getElementById('metaMes');
+      const porcentMesIpt = document.getElementById('porcentMes');
 
       let faltaMeta;
       let infos = JSON.parse(localStorage.getItem('infos'));
@@ -167,6 +175,7 @@
           vMes: '',
           mDia: '',
           mSemana: '',
+          mMes: '',
         };
       }
 
@@ -230,6 +239,10 @@
         let vendaDia = Number(vendaDiaIpt.value);
         let vendaMesAtual = vendaDia + vendaMes;
         vendaMesAtualIpt.value = vendaMesAtual;
+
+        let metaMes = Number(metaMesIpt.value);
+        let porcentMes = ((vendaMesAtual / metaMes) * 100).toFixed(1);
+        porcentMesIpt.value = porcentMes;
       }
 
       function gerarTexto() {
@@ -323,6 +336,7 @@ Clientes positivados com alguma inovação do incentivo: ${incentivo}
         let mSemana = Number(metaSemanaIpt.value);
         let vSemana = Number(vendaSemanaAtualIpt.value);
         let vMes = Number(vendaMesAtualIpt.value);
+        let mMes = Number(metaMesIpt.value);
 
         infos = {
           dia: dia,
@@ -333,6 +347,7 @@ Clientes positivados com alguma inovação do incentivo: ${incentivo}
           mSemana: mSemana,
           vSemana: vSemana,
           vMes: vMes,
+          mMes: mMes,
         };
 
         localStorage.setItem('infos', JSON.stringify(infos));
