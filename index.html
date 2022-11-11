@@ -67,7 +67,7 @@
         </tr>
         <tr>
           <td class="label"><label for="metaDia">Meta do dia: </label></td>
-          <td colspan="3"><input type="number" step="0.01" id="metaDia" /></td>
+          <td colspan="3"><input type="number" step="0.01" id="metaDia" disabled /></td>
         </tr>
         <tr>
           <td class="label"><label for="vendaDia">Venda do dia: </label></td>
@@ -98,8 +98,10 @@
           <td class="title" colspan="4">Informação Positivação</td>
         </tr>
         <tr>
-          <td class="label"><label for="incentivo">Positivação incentivo</label></td>
-          <td colspan="3"><input class="inputPosit" type="number" id="incentivo" /></td>
+          <td class="label"><label for="incentivo">Positivação Batata palha</label></td>
+          <td><input class="inputPosit" type="number" id="incentivo" /></td>
+          <td class="label"><label for="incentivo">Positivação Toddynho</label></td>
+          <td><input class="inputPosit" type="number" id="incentivo2" /></td>
         </tr>
         <tr>
           <td colspan="4" class="title">Informação da Semana</td>
@@ -154,6 +156,7 @@
       const porcentEfetIpt = document.getElementById('porcentEfet');
       const efetivaSemanaIpt = document.getElementById('efetivaSemana');
       const incentivoIpt = document.getElementById('incentivo');
+      const incentivo2Ipt = document.getElementById('incentivo2');
       const metaSemanaIpt = document.getElementById('metaSemana');
       const vendaSemanaIpt = document.getElementById('vendaSemana');
       const vendaSemanaAtualIpt = document.getElementById('vendaSemanaAtual');
@@ -201,12 +204,21 @@
         copiarTexto();
       });
 
-      vendaDiaIpt.addEventListener('blur', calcDia);
-      vendaDiaIpt.addEventListener('blur', calcSemana);
-      vendaDiaIpt.addEventListener('blur', calcMes);
+      vendaDiaIpt.addEventListener('blur', calcMetaDia);
       efetivasDRIpt.addEventListener('blur', calcEfetivas);
       vendaSemanaIpt.addEventListener('blur', calcSemana);
       vendaMesIpt.addEventListener('blur', calcMes);
+      metaSemanaIpt.addEventListener('blur', calcMetaDia);
+
+      function calcMetaDia() {
+        let metaSemana = Number(metaSemanaIpt.value);
+        let metaDia = metaSemana / 5;
+
+        metaDiaIpt.value = metaDia;
+        calcDia();
+        calcSemana();
+        calcMes();
+      }
 
       function calcDia() {
         let metaDia = metaDiaIpt.value;
@@ -268,6 +280,7 @@
         let efetivasFR = efetivasFRIpt.value;
         let efetSemana = efetivaSemanaIpt.value;
         let incentivo = incentivoIpt.value;
+        let incentivo2 = incentivo2Ipt.value;
         let metaSemana = metaSemanaIpt.value;
         let vendaSemana = vendaSemanaIpt.value;
         let vendaSemanaAtual = vendaSemanaAtualIpt.value;
@@ -307,8 +320,10 @@ Rota: ${rota}
 *prod%:* ${porcentEfet}%
 *Total efetivas semana:* ${efetSemana}
 
-🆕 *POSIT. INCENTIVO* 💯 💲
-Clientes positivados com alguma inovação do incentivo: ${incentivo}
+*🆕POSIT. INCENTIVO💯*
+📋📈
+*Batata Palha:* ${incentivo}
+*Toddynho:* ${incentivo2}
 
 👉 *META semana* : R$ ${metaSemana}
 👉 *Real semana* : R$ ${vendaSemanaAtual}
