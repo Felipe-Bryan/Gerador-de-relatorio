@@ -2,12 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      http-equiv="X-UA-Compatible"
-      content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -15,7 +11,7 @@
       crossorigin="anonymous" />
     <style>
       input {
-        width: 110px;
+        width: 90px;
       }
       .title {
         color: white !important;
@@ -49,253 +45,144 @@
     <div class="table-responsive-sm">
       <table class="table table-striped">
         <div class="buttons">
-          <button
-            type="button"
-            class="btn btn-primary"
-            onclick="newWeek()">
-            Iniciar Nova Semana
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            onclick="newMonth()">
-            Iniciar Novo Mês
-          </button>
+          <button type="button" class="btn btn-primary" onclick="newWeek()">Iniciar Nova Semana</button>
+          <button type="button" class="btn btn-primary" onclick="newMonth()">Iniciar Novo Mês</button>
         </div>
         <tr>
-          <td
-            class="title"
-            colspan="4">
-            Info Data e Rota
-          </td>
+          <td class="title" colspan="4">Info Data e Rota</td>
         </tr>
         <tr>
           <td class="label"><label for="dia">Dia: </label></td>
           <td>
-            <input
-              type="number"
-              id="dia"
-              min="1"
-              max="31" />
+            <input type="number" id="dia" min="1" max="31" />
           </td>
           <td class="label"><label for="mes">Mês: </label></td>
           <td>
-            <input
-              type="number"
-              id="mes"
-              min="1"
-              max="12" />
+            <input type="number" id="mes" min="1" max="12" />
           </td>
         </tr>
         <tr>
           <td class="label"><label for="rota">Rota: </label></td>
           <td colspan="3">
-            <input
-              type="number"
-              id="rota"
-              min="1" />
+            <input type="text" id="rota" />
           </td>
         </tr>
         <tr>
-          <td
-            class="title"
-            colspan="4">
-            Informação venda do dia
-          </td>
+          <td class="title" colspan="4">Informação venda do dia</td>
         </tr>
         <tr>
           <td class="label"><label for="metaDia">Meta do dia: </label></td>
           <td colspan="3">
-            <input
-              type="number"
-              step="0.01"
-              id="metaDia"
-              disabled />
+            <input type="number" step="0.01" id="metaDia" disabled />
           </td>
         </tr>
         <tr>
           <td class="label"><label for="vendaDia">Venda do dia: </label></td>
           <td>
-            <input
-              type="number"
-              step="0.01"
-              id="vendaDia" />
+            <input type="number" step="0.01" id="vendaDia" />
           </td>
           <td class="label"><label for="porcentDia">% do dia: </label></td>
           <td>
-            <input
-              type="number"
-              step="0.01"
-              id="porcentDia"
-              disabled />
+            <input type="number" step="0.01" id="porcentDia" disabled />
           </td>
         </tr>
         <tr>
-          <td
-            class="title"
-            colspan="4">
-            Informação visitas
-          </td>
+          <td class="title" colspan="4">Informação visitas</td>
         </tr>
         <tr>
           <td class="label"><label for="programadas">Visitas Prog</label></td>
           <td>
-            <input
-              type="number"
-              id="programadas" />
+            <input type="number" id="programadas" />
           </td>
         </tr>
         <tr>
           <td class="label"><label for="efetivasFR">Efetivas Fora</label></td>
           <td>
-            <input
-              type="number"
-              id="efetivasFR" />
+            <input type="number" id="efetivasFR" />
           </td>
           <td class="label"><label for="efetivasDR">Efetivas Roteiro</label></td>
           <td>
-            <input
-              type="number"
-              id="efetivasDR" />
+            <input type="number" id="efetivasDR" />
           </td>
         </tr>
         <tr>
           <td class="label">
-            <label
-              for="porcentEfet"
-              step="0.01"
-              >Produtividade</label
-            >
+            <label for="porcentEfet" step="0.01">Produtividade</label>
           </td>
           <td>
-            <input
-              type="number"
-              id="porcentEfet"
-              disabled />
+            <input type="number" id="porcentEfet" disabled />
           </td>
           <td><label for="">Efetivas Semana</label></td>
           <td>
-            <input
-              type="number"
-              id="efetivaSemana" />
+            <input type="number" id="efetivaSemana" />
           </td>
         </tr>
         <tr>
-          <td
-            class="title"
-            colspan="4">
-            Informação Positivação
-          </td>
+          <td class="title" colspan="4">Informação Positivação</td>
         </tr>
         <tr>
           <td class="label"><label for="incentivo">Positivação Torcida</label></td>
           <td>
-            <input
-              class="inputPosit"
-              type="number"
-              id="incentivo" />
+            <input class="inputPosit" type="number" id="incentivo" />
           </td>
           <td class="label"><label for="incentivo">Positivação Toddynho</label></td>
           <td>
-            <input
-              class="inputPosit"
-              type="number"
-              id="incentivo2" />
+            <input class="inputPosit" type="number" id="incentivo2" />
           </td>
         </tr>
         <tr>
-          <td
-            colspan="4"
-            class="title">
-            Informação da Semana
-          </td>
+          <td colspan="4" class="title">Informação da Semana</td>
         </tr>
         <tr>
           <td class="label"><label for="metaSemana">Meta da Semana</label></td>
           <td colspan="3">
-            <input
-              type="number"
-              step="0.01"
-              id="metaSemana" />
+            <input type="number" step="0.01" id="metaSemana" />
           </td>
         </tr>
         <tr>
           <td class="label"><label for="vendaSemana">Venda semana até ontem</label></td>
           <td>
-            <input
-              type="number"
-              step="0.01"
-              id="vendaSemana" />
+            <input type="number" step="0.01" id="vendaSemana" />
           </td>
           <td class="label"><label for="vendaSemanaAtual">Venda semana -hoje</label></td>
           <td>
-            <input
-              type="number"
-              step="0.01"
-              id="vendaSemanaAtual"
-              disabled />
+            <input type="number" step="0.01" id="vendaSemanaAtual" disabled />
           </td>
         </tr>
         <tr>
-          <td
-            class="title"
-            colspan="4">
-            Informação do Mês
-          </td>
+          <td class="title" colspan="4">Informação do Mês</td>
         </tr>
         <tr>
           <td class="label"><label for="vendaMes">Venda do mês até ontem</label></td>
           <td>
-            <input
-              type="number"
-              id="vendaMes" />
+            <input type="number" id="vendaMes" />
           </td>
           <td class="label"><label for="vendaMesAtual">Venda do mês hoje</label></td>
           <td>
-            <input
-              type="number"
-              id="vendaMesAtual"
-              disabled />
+            <input type="number" id="vendaMesAtual" disabled />
           </td>
         </tr>
         <tr>
           <td class="label"><label for="metaMes">Meta do Mês</label></td>
           <td>
-            <input
-              type="number"
-              id="metaMes" />
+            <input type="number" id="metaMes" />
           </td>
           <td class="label"><label for="porcentMes">Atingido</label></td>
           <td>
-            <input
-              type="number"
-              id="porcentMes"
-              disabled />
+            <input type="number" id="porcentMes" disabled />
           </td>
         </tr>
       </table>
       <div class="btn">
-        <button
-          class="btn btn-success"
-          id="btnSubmit">
-          Gerar Texto
-        </button>
+        <button class="btn btn-success" id="btnSubmit">Gerar Texto</button>
       </div>
     </div>
     <hr />
     <div class="textarea">
-      <textarea
-        id="whatsappText"
-        cols="40"
-        rows="30"></textarea>
+      <textarea id="whatsappText" cols="40" rows="30"></textarea>
     </div>
     <div class="buttons">
-      <button
-        type="button"
-        class="btn btn-primary"
-        onclick="reset()">
-        Reiniciar
-      </button>
+      <button type="button" class="btn btn-primary" onclick="reset()">Reiniciar</button>
     </div>
     <script>
       const diaIpt = document.getElementById('dia');
@@ -438,6 +325,7 @@
         let porcentSemana = (vendaSemanaAtual / metaSemana) * 100;
         let vendaMes = vendaMesIpt.value;
         let vendaMesAtual = vendaMesAtualIpt.value;
+        let metaMes = metaMesIpt.value;
 
         let efetivaTotal = efetivasDR + efetivasFR;
         let efetivaTotalText;
@@ -461,7 +349,7 @@
 Rota: ${rota}
 
 ➡️ *FATURAMENTO*
-✅PDB:
+✅ *PDB:*
 *Meta /dia* : R$ ${metaDia}
 *VENDA /DIA* : R$ ${vendaDia}
 *perc.%:* ${porcentDia}%
