@@ -62,9 +62,13 @@
           </td>
         </tr>
         <tr>
-          <td class="label"><label for="rota">Rota: </label></td>
-          <td colspan="3">
-            <input type="text" id="rota" />
+          <td class="label"><label for="rota">Rota Fas: </label></td>
+          <td>
+            <input type="number" id="rota" placeholder="000" />
+          </td>
+          <td class="label"><label for="rota-sap">Rota SAP:</label></td>
+          <td>
+            <input type="number" id="rota-sap" placeholder="BR" />
           </td>
         </tr>
         <tr>
@@ -121,11 +125,11 @@
           <td class="title" colspan="4">Informação Positivação</td>
         </tr>
         <tr>
-          <td class="label"><label for="incentivo">Positivação Torcida</label></td>
+          <td class="label"><label for="incentivo">Lays Rústica</label></td>
           <td>
             <input class="inputPosit" type="number" id="incentivo" />
           </td>
-          <td class="label"><label for="incentivo">Positivação Toddynho</label></td>
+          <td class="label"><label for="incentivo">Ovinhos Barbecue</label></td>
           <td>
             <input class="inputPosit" type="number" id="incentivo2" />
           </td>
@@ -188,6 +192,7 @@
       const diaIpt = document.getElementById('dia');
       const mesIpt = document.getElementById('mes');
       const rotaIpt = document.getElementById('rota');
+      const rotaSapIpt = document.getElementById('rota-sap');
       const metaDiaIpt = document.getElementById('metaDia');
       const vendaDiaIpt = document.getElementById('vendaDia');
       const porcentDiaIpt = document.getElementById('porcentDia');
@@ -226,6 +231,7 @@
       diaIpt.value = infos.dia + 1;
       mesIpt.value = infos.mes;
       rotaIpt.value = infos.rota;
+      rotaSapIpt.value = infos.rotaSap;
       metaDiaIpt.value = infos.mDia;
       efetivaSemanaIpt.value = infos.efetSemana;
       metaSemanaIpt.value = infos.mSemana;
@@ -309,6 +315,7 @@
         if (rota < 10) {
           rota = `0${rota}`;
         }
+        let rotaSap = Number(rotaSapIpt.value);
         let metaDia = metaDiaIpt.value;
         let vendaDia = vendaDiaIpt.value;
         let porcentDia = porcentDiaIpt.value;
@@ -346,7 +353,8 @@
         let textoIpt = document.getElementById('whatsappText');
 
         let texto = `Data: ${dia}/${mes}
-Rota: ${rota}
+Rota Fas: ${rota}
+Rota SAP: BR${rotaSap}
 
 ➡️ *FATURAMENTO*
 ✅ *PDB:*
@@ -362,12 +370,13 @@ Rota: ${rota}
 
 *🆕POSIT. INCENTIVO💯*
 📋📈
-*Torcida:* ${incentivo}
-*Toddynho:* ${incentivo2}
+*Lays Rústica:* ${incentivo}
+*Ovinhos Barbecue:* ${incentivo2}
 
 👉 *META semana* : R$ ${metaSemana}
-👉 *Real semana* : R$ ${vendaSemanaAtual} (${porcentSemana.toFixed(0)}%)
-👉 *Falta p/ META* : R$ ${faltaMetaText}
+👉 *Real semana* : R$ ${vendaSemanaAtual}
+✅ *% Objetivo semana: ${porcentSemana.toFixed(0)}%
+👉 *Falta p/ META semana* : R$ ${faltaMetaText}
 👉 *Real mês* : R$ ${vendaMesAtual}`;
 
         textoIpt.value = texto;
@@ -385,6 +394,7 @@ Rota: ${rota}
         let dia = Number(diaIpt.value);
         let mes = Number(mesIpt.value);
         let rota = Number(rotaIpt.value);
+        let rotaSap = Number(rotaSapIpt.value);
         let efetSemana = Number(efetivaSemanaIpt.value);
         let mDia = Number(metaDiaIpt.value);
         let mSemana = Number(metaSemanaIpt.value);
@@ -396,6 +406,7 @@ Rota: ${rota}
           dia: dia,
           mes: mes,
           rota: rota,
+          rotaSap: rotaSap,
           efetSemana: efetSemana,
           mDia: mDia,
           mSemana: mSemana,
