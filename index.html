@@ -330,9 +330,14 @@
         let vendaSemana = vendaSemanaIpt.value;
         let vendaSemanaAtual = vendaSemanaAtualIpt.value;
         let porcentSemana = (vendaSemanaAtual / metaSemana) * 100;
+        if ((porcentSemana = 'Infinity')) {
+          porcentSemana = 0;
+        }
+        console.log(typeof porcentSemana);
         let vendaMes = vendaMesIpt.value;
         let vendaMesAtual = vendaMesAtualIpt.value;
         let metaMes = metaMesIpt.value;
+        let porcentMes = porcentMesIpt.value;
 
         let efetivaTotal = efetivasDR + efetivasFR;
         let efetivaTotalText;
@@ -350,6 +355,8 @@
           efetivaTotalText = `${efetivasDR} + ${efetivasFR}`;
         }
 
+        let porcentSemanaText = `${porcentSemana.toFixed(1)}%`;
+
         let textoIpt = document.getElementById('whatsappText');
 
         let texto = `Data: ${dia}/${mes}
@@ -357,7 +364,7 @@ Rota Fas: ${rota}
 Rota SAP: BR${rotaSap}
 
 ➡️ *FATURAMENTO*
-✅ *PDB:*
+✅ *PDB:* ${metaMes}
 *Meta /dia* : R$ ${metaDia}
 *VENDA /DIA* : R$ ${vendaDia}
 *perc.%:* ${porcentDia}%
@@ -375,9 +382,9 @@ Rota SAP: BR${rotaSap}
 
 👉 *META semana* : R$ ${metaSemana}
 👉 *Real semana* : R$ ${vendaSemanaAtual}
-✅ *% Objetivo semana: ${porcentSemana.toFixed(0)}%
+✅ *% Objetivo semana: ${porcentSemanaText}
 👉 *Falta p/ META semana* : R$ ${faltaMetaText}
-👉 *Real mês* : R$ ${vendaMesAtual}`;
+👉 *Real mês* : R$ ${vendaMesAtual} (${porcentMes}%)`;
 
         textoIpt.value = texto;
       }
