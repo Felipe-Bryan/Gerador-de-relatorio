@@ -330,9 +330,6 @@
         let vendaSemana = vendaSemanaIpt.value;
         let vendaSemanaAtual = vendaSemanaAtualIpt.value;
         let porcentSemana = (vendaSemanaAtual / metaSemana) * 100;
-        if ((porcentSemana = 'Infinity')) {
-          porcentSemana = 0;
-        }
         console.log(typeof porcentSemana);
         let vendaMes = vendaMesIpt.value;
         let vendaMesAtual = vendaMesAtualIpt.value;
@@ -380,11 +377,11 @@ Rota SAP: BR${rotaSap}
 *Lays Rústica:* ${incentivo}
 *Ovinhos Barbecue:* ${incentivo2}
 
-👉 *META semana* : R$ ${metaSemana}
-👉 *Real semana* : R$ ${vendaSemanaAtual}
-✅ *% Objetivo semana: ${porcentSemanaText}
-👉 *Falta p/ META semana* : R$ ${faltaMetaText}
-👉 *Real mês* : R$ ${vendaMesAtual} (${porcentMes}%)`;
+👉 *META semana:* R$ ${metaSemana}
+👉 *Real semana:* R$ ${vendaSemanaAtual}
+✅ *% Objetivo semana:* ${porcentSemanaText}
+👉 *Falta p/ META semana:* R$ ${faltaMetaText}
+👉 *Real mês:* R$ ${vendaMesAtual}`;
 
         textoIpt.value = texto;
       }
