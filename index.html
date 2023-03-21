@@ -10,6 +10,9 @@
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
       crossorigin="anonymous" />
     <style>
+      body {
+        margin: 0px;
+      }
       input {
         width: 90px;
       }
@@ -42,12 +45,13 @@
     <title>Gerador de Relatório</title>
   </head>
   <body>
+    <div class="buttons">
+      <button type="button" class="btn btn-primary" onclick="newWeek()">Iniciar Nova Semana</button>
+      <button type="button" class="btn btn-primary" onclick="newMonth()">Iniciar Novo Mês</button>
+    </div>
+
     <div class="table-responsive-sm">
       <table class="table table-striped">
-        <div class="buttons">
-          <button type="button" class="btn btn-primary" onclick="newWeek()">Iniciar Nova Semana</button>
-          <button type="button" class="btn btn-primary" onclick="newMonth()">Iniciar Novo Mês</button>
-        </div>
         <tr>
           <td class="title" colspan="4">Info Data e Rota</td>
         </tr>
@@ -125,11 +129,11 @@
           <td class="title" colspan="4">Informação Positivação</td>
         </tr>
         <tr>
-          <td class="label"><label for="incentivo">Lays Rústica</label></td>
+          <td class="label"><label for="incentivo">Panetini</label></td>
           <td>
             <input class="inputPosit" type="number" id="incentivo" />
           </td>
-          <td class="label"><label for="incentivo">Ovinhos Barbecue</label></td>
+          <td class="label"><label for="incentivo">Torcida</label></td>
           <td>
             <input class="inputPosit" type="number" id="incentivo2" />
           </td>
@@ -330,7 +334,6 @@
         let vendaSemana = vendaSemanaIpt.value;
         let vendaSemanaAtual = vendaSemanaAtualIpt.value;
         let porcentSemana = (vendaSemanaAtual / metaSemana) * 100;
-        console.log(typeof porcentSemana);
         let vendaMes = vendaMesIpt.value;
         let vendaMesAtual = vendaMesAtualIpt.value;
         let metaMes = metaMesIpt.value;
@@ -374,13 +377,13 @@ Rota SAP: BR${rotaSap}
 
 *🆕POSIT. INCENTIVO💯*
 📋📈
-*Lays Rústica:* ${incentivo}
-*Ovinhos Barbecue:* ${incentivo2}
+*Panetini:* ${incentivo}
+*Torcida:* ${incentivo2}
 
 👉 *META semana:* R$ ${metaSemana}
 👉 *Real semana:* R$ ${vendaSemanaAtual}
 ✅ *% Objetivo semana:* ${porcentSemanaText}
-👉 *Falta p/ META semana:* R$ ${faltaMetaText}
+👉 *Falta p/ Meta semana:* R$ ${faltaMetaText}
 👉 *Real mês:* R$ ${vendaMesAtual}`;
 
         textoIpt.value = texto;
