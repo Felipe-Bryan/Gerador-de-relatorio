@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous" />
+    <title>Document</title>
+  </head>
+  <body class="m-0 p-0">
+    <div class="container m-0 p-0">
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-25" id="basic-addon1">Data</span>
+          <input
+            type="number"
+            id="dia"
+            class="form-control"
+            placeholder="Dia"
+            aria-label="Dia"
+            aria-describedby="basic-addon1" />
+          <input
+            type="number"
+            id="mes"
+            class="form-control"
+            placeholder="Mês"
+            aria-label="Mês"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Hoje</span>
+          <input
+            type="text"
+            id="diaSemana"
+            disabled
+            class="form-control w-50"
+            placeholder="Dia da semana"
+            aria-label="Dia da semana"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-25" id="basic-addon1">Rota</span>
+          <input
+            type="number"
+            id="rotaFas"
+            class="form-control"
+            placeholder="000"
+            aria-label="000"
+            aria-describedby="basic-addon1" />
+          <span class="input-group-text" id="basic-addon1">BR</span>
+          <input
+            type="number"
+            id="rotaSap"
+            class="form-control"
+            placeholder="0000"
+            aria-label="0000"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="row m-0">
+        <p class="text-center m-0"><b>Informação do dia</b></p>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Venda do dia</span>
+          <input
+            type="number"
+            id="vendaDia"
+            class="form-control w-50"
+            placeholder="Venda do dia"
+            aria-label="Venda do dia"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Meta do dia</span>
+          <input
+            type="number"
+            id="metaDia"
+            disabled
+            class="form-control w-50"
+            placeholder="Meta do dia"
+            aria-label="Meta do dia"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">% do dia</span>
+          <input
+            type="number"
+            id="percentDia"
+            disabled
+            class="form-control w-50"
+            placeholder="% do dia"
+            aria-label="% do dia"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="row m-0">
+        <p class="text-center m-0"><b>Informação de Efetividade</b></p>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Visitas Programadas</span>
+          <input
+            type="number"
+            id="programadas"
+            class="form-control w-50"
+            placeholder="Programadas"
+            aria-label="Programadas"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <div class="row m-0">
+            <div class="input-group m-0 p-1">
+              <span class="input-group-text w-50" id="basic-addon1">Efetivas fora roteiro</span>
+              <input
+                type="number"
+                id="efetivasFR"
+                class="form-control w-50"
+                placeholder="Efetivas fora roteiro"
+                aria-label="Efetivas fora roteiro"
+                aria-describedby="basic-addon1" />
+            </div>
+          </div>
+          <span class="input-group-text w-50" id="basic-addon1">Efetivas roteiro</span>
+          <input
+            type="number"
+            id="efetivasDR"
+            class="form-control w-50"
+            placeholder="Efetivas Roteiro"
+            aria-label="Efetivas Roteiro"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">% Produtividade</span>
+          <input
+            type="number"
+            id="percentEfetiva"
+            disabled
+            class="form-control w-50"
+            placeholder="Produtividade"
+            aria-label="Produtividade"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Efetivas Semana</span>
+          <input
+            type="number"
+            id="efetivaSemana"
+            class="form-control w-50"
+            placeholder="Efetivas Semana"
+            aria-label="Efetivas Semana"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="row m-0">
+        <p class="text-center m-0"><b>Positivação itens foco</b></p>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Panetini</span>
+          <input
+            type="number"
+            id="positFoco1"
+            class="form-control w-50"
+            placeholder="Panetini"
+            aria-label="Panetini"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Torcida</span>
+          <input
+            type="number"
+            id="positFoco2"
+            class="form-control w-50"
+            placeholder="Torcida"
+            aria-label="Torcida"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="row m-0">
+        <p class="text-center m-0"><b>Informação da Semana</b></p>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Meta da Semana</span>
+          <input
+            type="number"
+            id="metaSemana"
+            class="form-control w-50"
+            placeholder="Meta da Semana"
+            aria-label="Meta da Semana"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Venda Semana</span>
+          <input
+            type="number"
+            id="vendaSemana"
+            disabled
+            class="form-control w-50"
+            placeholder="Venda da Semana"
+            aria-label="Venda da Semana"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Venda Semana +hoje</span>
+          <input
+            type="number"
+            id="vendaSemanaAtual"
+            class="form-control w-50"
+            placeholder="Venda Semana +hoje"
+            aria-label="Venda Semana +hoje"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="row m-0">
+        <p class="text-center m-0"><b>Informação do Mês</b></p>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Venda atual mês</span>
+          <input
+            type="number"
+            id="vendaMes"
+            class="form-control w-50"
+            placeholder="Venda atual mês"
+            aria-label="Venda atual mês"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Venda mês +hoje</span>
+          <input
+            type="number"
+            id="vendaMesAtual"
+            class="form-control w-50"
+            disabled
+            placeholder="Venda mês +hoje"
+            aria-label="Venda mês +hoje"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Meta do mês</span>
+          <input
+            type="number"
+            id="metaMes"
+            class="form-control w-50"
+            placeholder="Meta do mês"
+            aria-label="Meta do mês"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">% atingimento</span>
+          <input
+            type="number"
+            id="percentMes"
+            disabled
+            class="form-control w-50"
+            placeholder="% atingimento"
+            aria-label="% atingimento"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="d-flex justify-content-center">
+        <button id="btnSubmit" type="button" class="btn btn-success mb-2">Copiar texto</button>
+      </div>
+
+      <div class="form-floating p-2">
+        <textarea
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="msgContent"
+          style="height: 600px"></textarea>
+        <label for="msgContent">Texto:</label>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <button onclick="reset()" id="btnReset" type="button" class="btn btn-danger mb-2">Resetar</button>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"></script>
+    <script src="./v2.js"></script>
+  </body>
+</html>
