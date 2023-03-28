@@ -20,6 +20,8 @@ const vendaMesAtualIpt = document.getElementById('vendaMesAtual');
 const metaMesIpt = document.getElementById('metaMes');
 const porcentMesIpt = document.getElementById('percentMes');
 const diaSemanaIpt = document.getElementById('diaSemana');
+const dddIpt = document.getElementById('ddd');
+const telIpt = document.getElementById('tel');
 
 const semana = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
 const d = new Date();
@@ -40,6 +42,8 @@ infos = {
     mDia: '',
     mSemana: '',
     mMes: '',
+    ddd: '',
+    tel: ''
 };
 }
 
@@ -59,6 +63,8 @@ metaSemanaIpt.value = infos.mSemana;
 vendaSemanaIpt.value = infos.vSemana;
 vendaMesIpt.value = infos.vMes;
 metaMesIpt.value = infos.mMes;
+dddIpt.value = infos.ddd;
+telIpt.value = infos.tel
 
 const btnSubmit = document.getElementById('btnSubmit');
 
@@ -153,7 +159,7 @@ function gerarTexto() {
     let vendaMes = vendaMesIpt.value;
     let vendaMesAtual = vendaMesAtualIpt.value;
     let metaMes = metaMesIpt.value;
-    let porcentMes = porcentMesIpt.value;
+    let porcentMes = porcentMesIpt.value;    
 
     let efetivaTotal = efetivasDR + efetivasFR;
     let efetivaTotalText;
@@ -178,33 +184,44 @@ function gerarTexto() {
     let textoIpt = document.getElementById('msgContent');
 
     let texto = `Data: ${dia}/${mes}
-    Rota Fas: ${rota}
-    Rota SAP: BR${rotaSap}
+Rota Fas: ${rota}
+Rota SAP: BR${rotaSap}
 
-    ➡️ *FATURAMENTO*
-    ✅ *PDB:* ${metaMes}
-    *Meta /dia* : R$ ${metaDia}
-    *VENDA /DIA* : R$ ${vendaDia}
-    *perc.%:* ${porcentDia == 0 ? '-' : `${porcentDia}%`}
+➡️ *FATURAMENTO*
+✅ *PDB:* ${metaMes}
+*Meta /dia* : R$ ${metaDia}
+*VENDA /DIA* : R$ ${vendaDia}
+*perc.%:* ${porcentDia == 0 ? '-' : `${porcentDia}%`}
 
-    ➡️ *EFETIVAS*
-    *Progr/dia* : ${programadas}
-    *Realiz/dia* : ${efetivaTotalText}
-    *prod%:* ${porcentEfet == 0 ? '-' : `${porcentEfet}%`}
-    *Total efetivas semana:* ${efetSemana}
+➡️ *EFETIVAS*
+*Progr/dia* : ${programadas}
+*Realiz/dia* : ${efetivaTotalText}
+*prod%:* ${porcentEfet == 0 ? '-' : `${porcentEfet}%`}
+*Total efetivas semana:* ${efetSemana}
 
-    *🆕POSIT. INCENTIVO💯*
-    📋📈
-    *Panetini:* ${positFoco1}
-    *Torcida:* ${positFoco2}
+*🆕POSIT. INCENTIVO💯*
+📋📈
+*Panetini:* ${positFoco1}
+*Torcida:* ${positFoco2}
 
-    👉 *META semana:* R$ ${metaSemana == 0 ? '-' : metaSemana}
-    👉 *Real semana:* R$ ${vendaSemanaAtual}
-    ✅ *% Objetivo semana:* ${porcentSemanaText}
-    👉 *Falta p/ Meta semana:* R$ ${faltaMetaText}
-    👉 *Real mês:* R$ ${vendaMesAtual}`;
+👉 *META semana:* R$ ${metaSemana == 0 ? '-' : metaSemana}
+👉 *Real semana:* R$ ${vendaSemanaAtual}
+✅ *% Objetivo semana:* ${porcentSemanaText}
+👉 *Falta p/ Meta semana:* R$ ${faltaMetaText}
+👉 *Real mês:* R$ ${vendaMesAtual}`;
 
-    textoIpt.value = texto;
+    textoIpt.value = texto;    
+}
+
+function sendMsg(){
+    copiarTexto();
+    let btnSend = document.getElementById('btnSend');
+
+    let ddd = dddIpt.value
+    let tel = telIpt.value
+    let url = `https://wa.me/55${ddd}${tel}`
+
+    btnSend.setAttribute('href', url)
 }
 
 function copiarTexto() {
@@ -226,6 +243,8 @@ function saveToStorage() {
     let vSemana = Number(vendaSemanaAtualIpt.value);
     let vMes = Number(vendaMesAtualIpt.value);
     let mMes = Number(metaMesIpt.value);
+    let ddd = Number(dddIpt.value);
+    let tel = Number(telIpt.value);
 
     infos = {
         dia: dia,
@@ -238,6 +257,8 @@ function saveToStorage() {
         vSemana: vSemana,
         vMes: vMes,
         mMes: mMes,
+        ddd: ddd,
+        tel: tel
     };
 
     localStorage.setItem('infos', JSON.stringify(infos));

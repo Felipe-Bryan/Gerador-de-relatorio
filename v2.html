@@ -321,8 +321,36 @@
       </div>
       <hr class="mt-1" />
 
-      <div class="d-flex justify-content-center">
-        <button id="btnSubmit" type="button" class="btn btn-success mb-2">Copiar texto</button>
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Enviar para</span>
+          <input
+            type="number"
+            id="ddd"
+            class="form-control"
+            placeholder="DDD"
+            aria-label="DDD"
+            aria-describedby="basic-addon1" />
+          <input
+            type="number"
+            id="tel"
+            class="form-control w-25"
+            placeholder="número"
+            aria-label="número"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="d-flex justify-content-around">
+        <div class="d-flex justify-content-center">
+          <button id="btnSubmit" type="button" class="btn btn-success mb-2">Gerar texto</button>
+        </div>
+        <div class="d-flex justify-content-center">
+          <a id="btnSend" type="button" class="btn btn-success mb-2" onclick="sendMsg()" target="_blank"
+            >Enviar texto</a
+          >
+        </div>
       </div>
 
       <div class="form-floating p-2">
