@@ -171,7 +171,9 @@ function gerarTexto() {
         efetivaTotalText = `${efetivasDR} + ${efetivasFR}`;
     }
 
-    let porcentSemanaText = `${porcentSemana.toFixed(1)}%`;
+    let porcentSemanaText;
+
+    porcentSemana === Infinity ? porcentSemanaText= '-' : porcentSemanaText = `${porcentSemana.toFixed(1)}%`
 
     let textoIpt = document.getElementById('msgContent');
 
@@ -183,12 +185,12 @@ function gerarTexto() {
     ✅ *PDB:* ${metaMes}
     *Meta /dia* : R$ ${metaDia}
     *VENDA /DIA* : R$ ${vendaDia}
-    *perc.%:* ${porcentDia}%
+    *perc.%:* ${porcentDia == 0 ? '-' : `${porcentDia}%`}
 
     ➡️ *EFETIVAS*
     *Progr/dia* : ${programadas}
     *Realiz/dia* : ${efetivaTotalText}
-    *prod%:* ${porcentEfet}%
+    *prod%:* ${porcentEfet == 0 ? '-' : `${porcentEfet}%`}
     *Total efetivas semana:* ${efetSemana}
 
     *🆕POSIT. INCENTIVO💯*
@@ -196,7 +198,7 @@ function gerarTexto() {
     *Panetini:* ${positFoco1}
     *Torcida:* ${positFoco2}
 
-    👉 *META semana:* R$ ${metaSemana}
+    👉 *META semana:* R$ ${metaSemana == 0 ? '-' : metaSemana}
     👉 *Real semana:* R$ ${vendaSemanaAtual}
     ✅ *% Objetivo semana:* ${porcentSemanaText}
     👉 *Falta p/ Meta semana:* R$ ${faltaMetaText}
