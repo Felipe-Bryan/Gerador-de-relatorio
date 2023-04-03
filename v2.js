@@ -277,36 +277,37 @@ function newWeek() {
     metaDiaIpt.value = '';
 }
 
-function newMonth() {
-    if (infos.mes < 12) {
-        infos.mes++;
-    } else {
-        infos.mes = 1;
-    }
-    infos.dia = '';
-    infos.mDia = '';
-    infos.efetSemana = '';
-    infos.vSemana = '';
-    infos.vMes = '';
-    infos.mSemana = '';
-    localStorage.setItem('infos', JSON.stringify(infos));
-    location.reload();
-}
-
 function reset() {
     localStorage.removeItem('infos');
     location.reload();
 }
 
-function checkWeek(){
-    if(diaSemanaIpt.value == "Segunda-Feira"){
-        let confirmation = confirm('Deseja iniciar nova semana?')
-        if(!confirmation){
-            return;
-        } else {
-            newWeek();
-        }
+if(diaSemanaIpt.value == "Segunda-Feira"){
+    let confirmation = confirm('Deseja iniciar nova semana?')
+    if(confirmation){
+        newWeek();
     }
 }
 
-checkWeek();
+function checkMonth(){
+    let currentMonth = infos.mMes
+    let newMonth = mesIpt.value
+
+    if(currentMonth !== newMonth){
+        let confirmation = confirm('Deseja iniciar um novo mês?')
+        if(!confirmation){
+            return
+        } else {
+            infos.dia = '';
+            infos.mes = newMonth;
+            infos.mDia = '';
+            infos.efetSemana = '';
+            infos.vSemana = '';
+            infos.vMes = '';
+            infos.mSemana = '';
+            infos.mMes = '';
+            localStorage.setItem('infos', JSON.stringify(infos));
+            location.reload();
+        }
+    }            
+}
