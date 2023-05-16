@@ -54,7 +54,7 @@ if (!infos) {
 let metaDia = 0;
 
 if (infos.metaSemana > 0) {
-  mDia = infos.mSemana / 5;
+  metaDia = infos.metaSemana / 5;
 }
 
 rotaSapIpt.value = infos.rotaSap;
@@ -134,12 +134,12 @@ function reset() {
   }
 }
 
-// if (diaSemanaIpt.value == 'Segunda-Feira') {
-//   let confirmation = confirm('Deseja iniciar nova semana?');
-//   if (confirmation) {
-//     newWeek();
-//   }
-// }
+if (diaSemanaIpt.value == 'Segunda-Feira') {
+  let confirmation = confirm('Deseja iniciar nova semana?');
+  if (confirmation) {
+    newWeek();
+  }
+}
 
 function checkMonth() {
   let currentMonth = infos.mes;
@@ -150,8 +150,6 @@ function checkMonth() {
     if (!confirmation) {
       return;
     } else {
-      infos.dia = '';
-      infos.mes = newMonth;
       infos.metaDia = '';
       infos.efetivasSemana = '';
       infos.vendaSemana = '';
@@ -290,28 +288,28 @@ function gerarTexto() {
   const texto = `Data: ${diaIpt.value}/${mesIpt.value}
 Rota: BR${rotaSapIpt.value}
 
-➡️ *FATURAMENTO*
-✅ *PDB:* ${metaMesIpt.value}
+\u{27A1} *FATURAMENTO*
+\u{2705} *PDB:* ${metaMesIpt.value}
 *Meta /dia* : R$ ${metaDiaIpt.value}
 *VENDA /DIA* : R$ ${vendaDiaIpt.value}
 *perc.%:* ${porcentDiaIpt.value}%
 
-➡️ *EFETIVAS*
+\u{27A1} *EFETIVAS*
 *Progr/dia* : ${programadasIpt.value}
 *Realiz/dia* : ${efetivaTotalText}
 *prod%:* ${porcentEfetIpt.value}%
 *Total efetivas semana:* ${efetivaSemanaIpt.value}
 
-🆕 *POSIT. INCENTIVO* \u{1F4AF}
-📋📈
+\u{1F195} *POSIT. INCENTIVO* \u{1F4AF}
+\u{1F4CB}\u{1F4C8}
 *Panetini:* ${positFoco1Ipt.value}
 *Torcida:* ${positFoco2Ipt.value}
 
-👉 *META semana:* R$ ${metaSemanaIpt.value}
-👉 *Real semana:* R$ ${vendaSemanaAtualIpt.value}
-✅ *% Objetivo semana:* ${porcentSemanaIpt.value}%
-👉 *Falta p/ Meta semana:* R$ ${faltaMetaIpt.value}
-👉 *Real mês:* R$ ${vendaMesAtualIpt.value}`;
+\u{1F449} *META semana:* R$ ${metaSemanaIpt.value}
+\u{1F449} *Real semana:* R$ ${vendaSemanaAtualIpt.value}
+\u{2611} *% Objetivo semana:* ${porcentSemanaIpt.value}%
+\u{1F449} *Falta p/ Meta semana:* R$ ${faltaMetaIpt.value}
+\u{1F449} *Real mês:* R$ ${vendaMesAtualIpt.value}`;
 
   textoIpt.value = texto;
 }
