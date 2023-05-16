@@ -1,459 +1,390 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./762174.png" type="image/x-icon" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
       crossorigin="anonymous" />
-    <style>
-      body {
-        margin: 0px;
-      }
-      input {
-        width: 90px;
-      }
-      .title {
-        color: white !important;
-        background-color: rgb(90, 90, 90) !important;
-        text-align: center;
-      }
-      .btn {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .buttons {
-        margin: 15px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-
-      .textarea {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-bottom: 20px;
-      }
-    </style>
     <title>Gerador de Relatório</title>
   </head>
-  <body>
-    <div class="buttons">
-      <button type="button" class="btn btn-primary" onclick="newWeek()">Iniciar Nova Semana</button>
-      <button type="button" class="btn btn-primary" onclick="newMonth()">Iniciar Novo Mês</button>
-    </div>
+  <body class="m-0 p-0">
+    <div class="container m-0 p-0">
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <input
+            type="text"
+            id="diaSemana"
+            disabled
+            class="form-control w-50 text-center"
+            placeholder="Dia da semana"
+            aria-label="Dia da semana"
+            aria-describedby="basic-addon1" />
+          <input
+            type="number"
+            id="dia"
+            class="form-control w-25 text-center"
+            placeholder="Dia"
+            aria-label="Dia"
+            aria-describedby="basic-addon1" />
+          <input
+            onchange="checkMonth()"
+            type="number"
+            id="mes"
+            class="form-control w-25 text-center"
+            placeholder="Mês"
+            aria-label="Mês"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-25" id="basic-addon1">Rota</span>
+          <span class="input-group-text w-25 text-end" id="basic-addon1">BR</span>
+          <input
+            type="number"
+            id="rotaSap"
+            class="form-control w-50"
+            placeholder="0000"
+            aria-label="0000"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
 
-    <div class="table-responsive-sm">
-      <table class="table table-striped">
-        <tr>
-          <td class="title" colspan="4">Info Data e Rota</td>
-        </tr>
-        <tr>
-          <td class="label"><label for="dia">Dia: </label></td>
-          <td>
-            <input type="number" id="dia" min="1" max="31" />
-          </td>
-          <td class="label"><label for="mes">Mês: </label></td>
-          <td>
-            <input type="number" id="mes" min="1" max="12" />
-          </td>
-        </tr>
-        <tr>
-          <td class="label"><label for="rota">Rota Fas: </label></td>
-          <td>
-            <input type="number" id="rota" placeholder="000" />
-          </td>
-          <td class="label"><label for="rota-sap">Rota SAP:</label></td>
-          <td>
-            <input type="number" id="rota-sap" placeholder="BR" />
-          </td>
-        </tr>
-        <tr>
-          <td class="title" colspan="4">Informação venda do dia</td>
-        </tr>
-        <tr>
-          <td class="label"><label for="metaDia">Meta do dia: </label></td>
-          <td colspan="3">
-            <input type="number" step="0.01" id="metaDia" disabled />
-          </td>
-        </tr>
-        <tr>
-          <td class="label"><label for="vendaDia">Venda do dia: </label></td>
-          <td>
-            <input type="number" step="0.01" id="vendaDia" />
-          </td>
-          <td class="label"><label for="porcentDia">% do dia: </label></td>
-          <td>
-            <input type="number" step="0.01" id="porcentDia" disabled />
-          </td>
-        </tr>
-        <tr>
-          <td class="title" colspan="4">Informação visitas</td>
-        </tr>
-        <tr>
-          <td class="label"><label for="programadas">Visitas Prog</label></td>
-          <td>
-            <input type="number" id="programadas" />
-          </td>
-        </tr>
-        <tr>
-          <td class="label"><label for="efetivasFR">Efetivas Fora</label></td>
-          <td>
-            <input type="number" id="efetivasFR" />
-          </td>
-          <td class="label"><label for="efetivasDR">Efetivas Roteiro</label></td>
-          <td>
-            <input type="number" id="efetivasDR" />
-          </td>
-        </tr>
-        <tr>
-          <td class="label">
-            <label for="porcentEfet" step="0.01">Produtividade</label>
-          </td>
-          <td>
-            <input type="number" id="porcentEfet" disabled />
-          </td>
-          <td><label for="">Efetivas Semana</label></td>
-          <td>
-            <input type="number" id="efetivaSemana" />
-          </td>
-        </tr>
-        <tr>
-          <td class="title" colspan="4">Informação Positivação</td>
-        </tr>
-        <tr>
-          <td class="label"><label for="incentivo">Panetini</label></td>
-          <td>
-            <input class="inputPosit" type="number" id="incentivo" />
-          </td>
-          <td class="label"><label for="incentivo">Torcida</label></td>
-          <td>
-            <input class="inputPosit" type="number" id="incentivo2" />
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" class="title">Informação da Semana</td>
-        </tr>
-        <tr>
-          <td class="label"><label for="metaSemana">Meta da Semana</label></td>
-          <td colspan="3">
-            <input type="number" step="0.01" id="metaSemana" />
-          </td>
-        </tr>
-        <tr>
-          <td class="label"><label for="vendaSemana">Venda semana até ontem</label></td>
-          <td>
-            <input type="number" step="0.01" id="vendaSemana" />
-          </td>
-          <td class="label"><label for="vendaSemanaAtual">Venda semana -hoje</label></td>
-          <td>
-            <input type="number" step="0.01" id="vendaSemanaAtual" disabled />
-          </td>
-        </tr>
-        <tr>
-          <td class="title" colspan="4">Informação do Mês</td>
-        </tr>
-        <tr>
-          <td class="label"><label for="vendaMes">Venda do mês até ontem</label></td>
-          <td>
-            <input type="number" id="vendaMes" />
-          </td>
-          <td class="label"><label for="vendaMesAtual">Venda do mês hoje</label></td>
-          <td>
-            <input type="number" id="vendaMesAtual" disabled />
-          </td>
-        </tr>
-        <tr>
-          <td class="label"><label for="metaMes">Meta do Mês</label></td>
-          <td>
-            <input type="number" id="metaMes" />
-          </td>
-          <td class="label"><label for="porcentMes">Atingido</label></td>
-          <td>
-            <input type="number" id="porcentMes" disabled />
-          </td>
-        </tr>
-      </table>
-      <div class="btn">
-        <button class="btn btn-success" id="btnSubmit">Gerar Texto</button>
+      <div class="row m-0">
+        <p class="text-center m-0"><b>Informação do dia</b></p>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Venda do dia</span>
+          <input
+            type="number"
+            id="vendaDia"
+            class="form-control w-50"
+            placeholder="Venda do dia"
+            aria-label="Venda do dia"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Meta do dia</span>
+          <input
+            type="number"
+            id="metaDia"
+            disabled
+            class="form-control w-50"
+            placeholder="Meta do dia"
+            aria-label="Meta do dia"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">% do dia</span>
+          <input
+            type="number"
+            id="percentDia"
+            disabled
+            class="form-control w-50"
+            placeholder="% do dia"
+            aria-label="% do dia"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="row m-0">
+        <p class="text-center m-0"><b>Informação de Efetividade</b></p>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Visitas Programadas</span>
+          <input
+            type="number"
+            id="programadas"
+            class="form-control w-50"
+            placeholder="Programadas"
+            aria-label="Programadas"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Efetivas fora roteiro</span>
+          <input
+            type="number"
+            id="efetivasFR"
+            class="form-control w-50"
+            placeholder="Efetivas fora roteiro"
+            aria-label="Efetivas fora roteiro"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Efetivas roteiro</span>
+          <input
+            type="number"
+            id="efetivasDR"
+            class="form-control w-50"
+            placeholder="Efetivas roteiro"
+            aria-label="Efetivas roteiro"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">% Produtividade</span>
+          <input
+            type="number"
+            id="percentEfetiva"
+            disabled
+            class="form-control w-50"
+            placeholder="Produtividade"
+            aria-label="Produtividade"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Efetivas Semana</span>
+          <input
+            type="number"
+            id="efetivaSemana"
+            class="form-control w-50"
+            placeholder="Efetivas Semana"
+            aria-label="Efetivas Semana"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="row m-0">
+        <p class="text-center m-0"><b>Positivação itens foco</b></p>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Panetini</span>
+          <input
+            type="number"
+            id="positFoco1"
+            class="form-control w-50"
+            placeholder="Panetini"
+            aria-label="Panetini"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Torcida</span>
+          <input
+            type="number"
+            id="positFoco2"
+            class="form-control w-50"
+            placeholder="Torcida"
+            aria-label="Torcida"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="row m-0">
+        <p class="text-center m-0"><b>Informação da Semana</b></p>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Meta da semana</span>
+          <input
+            type="number"
+            id="metaSemana"
+            class="form-control w-50"
+            placeholder="Meta da semana"
+            aria-label="Meta da semana"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Venda semana ontem</span>
+          <input
+            type="number"
+            id="vendaSemana"
+            class="form-control w-50"
+            placeholder="Venda da semana"
+            aria-label="Venda da semana"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Venda semana +hoje</span>
+          <input
+            type="number"
+            id="vendaSemanaAtual"
+            disabled
+            class="form-control w-50"
+            placeholder="Venda semana +hoje"
+            aria-label="Venda semana +hoje"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Falta p/meta</span>
+          <input
+            type="number"
+            id="faltaMeta"
+            disabled
+            class="form-control w-50"
+            placeholder="Falta p/meta"
+            aria-label="Falta p/meta"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">% Semana</span>
+          <input
+            type="number"
+            id="porcentSemana"
+            disabled
+            class="form-control w-50"
+            placeholder="% Semana"
+            aria-label="% Semana"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="row m-0">
+        <p class="text-center m-0"><b>Informação do Mês</b></p>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Venda mês ontem</span>
+          <input
+            type="number"
+            id="vendaMes"
+            class="form-control w-50"
+            placeholder="Venda mês ontem"
+            aria-label="Venda mês ontem"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Venda mês +hoje</span>
+          <input
+            type="number"
+            id="vendaMesAtual"
+            class="form-control w-50"
+            disabled
+            placeholder="Venda mês +hoje"
+            aria-label="Venda mês +hoje"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Meta do mês</span>
+          <input
+            type="number"
+            id="metaMes"
+            class="form-control w-50"
+            placeholder="Meta do mês"
+            aria-label="Meta do mês"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">% atingimento</span>
+          <input
+            type="number"
+            id="percentMes"
+            disabled
+            class="form-control w-50"
+            placeholder="% atingimento"
+            aria-label="% atingimento"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Enviar para</span>
+          <input
+            type="number"
+            id="ddd"
+            class="form-control"
+            placeholder="DDD"
+            aria-label="DDD"
+            aria-describedby="basic-addon1" />
+          <input
+            type="number"
+            id="tel"
+            class="form-control w-25"
+            placeholder="número"
+            aria-label="número"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+      <hr class="mt-1" />
+
+      <!-- <div class="d-flex justify-content-around"> -->
+      <div class="d-flex justify-content-center">
+        <button id="btnSubmit" type="button" class="btn btn-success mb-2">Gerar texto</button>
+      </div>
+
+      <!-- </div> -->
+
+      <div class="form-floating p-2">
+        <textarea
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="msgContent"
+          style="height: 600px"></textarea>
+        <label for="msgContent">Texto:</label>
+      </div>
+
+      <div class="d-flex justify-content-around">
+        <button onclick="reset()" id="btnReset" type="button" class="btn btn-danger mb-2">Resetar</button>
+        <div class="d-flex justify-content-center">
+          <a id="btnSend" type="button" class="btn btn-success mb-2" onclick="sendMsg()" target="_blank"
+            >Enviar texto</a
+          >
+        </div>
       </div>
     </div>
-    <hr />
-    <div class="textarea">
-      <textarea id="whatsappText" cols="40" rows="30"></textarea>
-    </div>
-    <div class="buttons">
-      <button type="button" class="btn btn-primary" onclick="reset()">Reiniciar</button>
-    </div>
-    <script>
-      const diaIpt = document.getElementById('dia');
-      const mesIpt = document.getElementById('mes');
-      const rotaIpt = document.getElementById('rota');
-      const rotaSapIpt = document.getElementById('rota-sap');
-      const metaDiaIpt = document.getElementById('metaDia');
-      const vendaDiaIpt = document.getElementById('vendaDia');
-      const porcentDiaIpt = document.getElementById('porcentDia');
-      const programadasIpt = document.getElementById('programadas');
-      const efetivasDRIpt = document.getElementById('efetivasDR');
-      const efetivasFRIpt = document.getElementById('efetivasFR');
-      const porcentEfetIpt = document.getElementById('porcentEfet');
-      const efetivaSemanaIpt = document.getElementById('efetivaSemana');
-      const incentivoIpt = document.getElementById('incentivo');
-      const incentivo2Ipt = document.getElementById('incentivo2');
-      const metaSemanaIpt = document.getElementById('metaSemana');
-      const vendaSemanaIpt = document.getElementById('vendaSemana');
-      const vendaSemanaAtualIpt = document.getElementById('vendaSemanaAtual');
-      const vendaMesIpt = document.getElementById('vendaMes');
-      const vendaMesAtualIpt = document.getElementById('vendaMesAtual');
-      const metaMesIpt = document.getElementById('metaMes');
-      const porcentMesIpt = document.getElementById('porcentMes');
-
-      let faltaMeta;
-      let infos = JSON.parse(localStorage.getItem('infos'));
-
-      if (!infos) {
-        infos = {
-          dia: '',
-          mes: '',
-          rota: '',
-          efetSemana: '',
-          vSemana: '',
-          vMes: '',
-          mDia: '',
-          mSemana: '',
-          mMes: '',
-        };
-      }
-
-      diaIpt.value = infos.dia + 1;
-      mesIpt.value = infos.mes;
-      rotaIpt.value = infos.rota;
-      rotaSapIpt.value = infos.rotaSap;
-      metaDiaIpt.value = infos.mDia;
-      efetivaSemanaIpt.value = infos.efetSemana;
-      metaSemanaIpt.value = infos.mSemana;
-      vendaSemanaIpt.value = infos.vSemana;
-      vendaMesIpt.value = infos.vMes;
-      metaMesIpt.value = infos.mMes;
-
-      const btnSubmit = document.getElementById('btnSubmit');
-      const btnCopy = document.getElementById('btnCopy');
-
-      btnSubmit.addEventListener('click', (e) => {
-        e.preventDefault();
-        gerarTexto();
-        copiarTexto();
-      });
-
-      vendaDiaIpt.addEventListener('blur', calcMetaDia);
-      efetivasDRIpt.addEventListener('blur', calcEfetivas);
-      vendaSemanaIpt.addEventListener('blur', calcSemana);
-      vendaMesIpt.addEventListener('blur', calcMes);
-      metaSemanaIpt.addEventListener('blur', calcMetaDia);
-
-      function calcMetaDia() {
-        let metaSemana = Number(metaSemanaIpt.value);
-        let metaDia = metaSemana / 5;
-
-        metaDiaIpt.value = metaDia;
-        calcDia();
-        calcSemana();
-        calcMes();
-      }
-
-      function calcDia() {
-        let metaDia = metaDiaIpt.value;
-        let vendaDia = vendaDiaIpt.value;
-        let porcentDia = ((vendaDia / metaDia) * 100).toFixed(1);
-        porcentDiaIpt.value = porcentDia;
-      }
-
-      function calcEfetivas() {
-        let programadas = programadasIpt.value;
-        let efetivasDR = Number(efetivasDRIpt.value);
-        let efetivasFR = Number(efetivasFRIpt.value);
-        let efetSemana = Number(efetivaSemanaIpt.value);
-        let porcentEfet = (((efetivasDR + efetivasFR) / programadas) * 100).toFixed(1);
-        let efetTotal = efetSemana + efetivasDR + efetivasFR;
-        porcentEfetIpt.value = porcentEfet;
-        efetivaSemanaIpt.value = efetTotal;
-      }
-
-      function calcSemana() {
-        let metaSemana = metaSemanaIpt.value;
-        let vendaSemana = Number(vendaSemanaIpt.value);
-        let vendaDia = Number(vendaDiaIpt.value);
-        let vendaSemanaAtual = vendaSemana + vendaDia;
-        faltaMeta = metaSemana - vendaSemanaAtual;
-        vendaSemanaAtualIpt.value = vendaSemanaAtual;
-      }
-
-      function calcMes() {
-        let vendaMes = Number(vendaMesIpt.value);
-        let vendaDia = Number(vendaDiaIpt.value);
-        let vendaMesAtual = vendaDia + vendaMes;
-        vendaMesAtualIpt.value = vendaMesAtual;
-
-        let metaMes = Number(metaMesIpt.value);
-        let porcentMes = ((vendaMesAtual / metaMes) * 100).toFixed(1);
-        porcentMesIpt.value = porcentMes;
-      }
-
-      function gerarTexto() {
-        let dia = Number(diaIpt.value);
-        if (dia < 10) {
-          dia = `0${dia}`;
-        }
-        let mes = Number(mesIpt.value);
-        if (mes < 10) {
-          mes = `0${mes}`;
-        }
-        let rota = Number(rotaIpt.value);
-        if (rota < 10) {
-          rota = `0${rota}`;
-        }
-        let rotaSap = Number(rotaSapIpt.value);
-        let metaDia = metaDiaIpt.value;
-        let vendaDia = vendaDiaIpt.value;
-        let porcentDia = porcentDiaIpt.value;
-        let programadas = programadasIpt.value;
-        let efetivasDR = efetivasDRIpt.value;
-        let porcentEfet = porcentEfetIpt.value;
-        let efetivasFR = efetivasFRIpt.value;
-        let efetSemana = efetivaSemanaIpt.value;
-        let incentivo = incentivoIpt.value;
-        let incentivo2 = incentivo2Ipt.value;
-        let metaSemana = metaSemanaIpt.value;
-        let vendaSemana = vendaSemanaIpt.value;
-        let vendaSemanaAtual = vendaSemanaAtualIpt.value;
-        let porcentSemana = (vendaSemanaAtual / metaSemana) * 100;
-        let vendaMes = vendaMesIpt.value;
-        let vendaMesAtual = vendaMesAtualIpt.value;
-        let metaMes = metaMesIpt.value;
-        let porcentMes = porcentMesIpt.value;
-
-        let efetivaTotal = efetivasDR + efetivasFR;
-        let efetivaTotalText;
-
-        let faltaMetaText;
-        if (faltaMeta <= 0) {
-          faltaMetaText = '-';
-        } else {
-          faltaMetaText = faltaMeta;
-        }
-
-        if (efetivasFR <= 0) {
-          efetivaTotalText = `${efetivasDR}`;
-        } else {
-          efetivaTotalText = `${efetivasDR} + ${efetivasFR}`;
-        }
-
-        let porcentSemanaText = `${porcentSemana.toFixed(1)}%`;
-
-        let textoIpt = document.getElementById('whatsappText');
-
-        let texto = `Data: ${dia}/${mes}
-Rota Fas: ${rota}
-Rota SAP: BR${rotaSap}
-
-➡️ *FATURAMENTO*
-✅ *PDB:* ${metaMes}
-*Meta /dia* : R$ ${metaDia}
-*VENDA /DIA* : R$ ${vendaDia}
-*perc.%:* ${porcentDia}%
-
-➡️ *EFETIVAS*
-*Progr/dia* : ${programadas}
-*Realiz/dia* : ${efetivaTotalText}
-*prod%:* ${porcentEfet}%
-*Total efetivas semana:* ${efetSemana}
-
-*🆕POSIT. INCENTIVO💯*
-📋📈
-*Panetini:* ${incentivo}
-*Torcida:* ${incentivo2}
-
-👉 *META semana:* R$ ${metaSemana}
-👉 *Real semana:* R$ ${vendaSemanaAtual}
-✅ *% Objetivo semana:* ${porcentSemanaText}
-👉 *Falta p/ Meta semana:* R$ ${faltaMetaText}
-👉 *Real mês:* R$ ${vendaMesAtual}`;
-
-        textoIpt.value = texto;
-      }
-
-      function copiarTexto() {
-        saveToStorage();
-        let textoCopiado = document.getElementById('whatsappText');
-        textoCopiado.select();
-        textoCopiado.setSelectionRange(0, 99999);
-        document.execCommand('copy');
-      }
-
-      function saveToStorage() {
-        let dia = Number(diaIpt.value);
-        let mes = Number(mesIpt.value);
-        let rota = Number(rotaIpt.value);
-        let rotaSap = Number(rotaSapIpt.value);
-        let efetSemana = Number(efetivaSemanaIpt.value);
-        let mDia = Number(metaDiaIpt.value);
-        let mSemana = Number(metaSemanaIpt.value);
-        let vSemana = Number(vendaSemanaAtualIpt.value);
-        let vMes = Number(vendaMesAtualIpt.value);
-        let mMes = Number(metaMesIpt.value);
-
-        infos = {
-          dia: dia,
-          mes: mes,
-          rota: rota,
-          rotaSap: rotaSap,
-          efetSemana: efetSemana,
-          mDia: mDia,
-          mSemana: mSemana,
-          vSemana: vSemana,
-          vMes: vMes,
-          mMes: mMes,
-        };
-
-        localStorage.setItem('infos', JSON.stringify(infos));
-      }
-
-      function newWeek() {
-        infos.mSemana = '';
-        infos.mDia = '';
-        infos.efetSemana = '';
-        infos.vSemana = '';
-        localStorage.setItem('infos', JSON.stringify(infos));
-        location.reload();
-      }
-
-      function newMonth() {
-        if (infos.mes < 12) {
-          infos.mes++;
-        } else {
-          infos.mes = 1;
-        }
-        infos.dia = '';
-        infos.mDia = '';
-        infos.efetSemana = '';
-        infos.vSemana = '';
-        infos.vMes = '';
-        infos.mSemana = '';
-        localStorage.setItem('infos', JSON.stringify(infos));
-        location.reload();
-      }
-
-      function reset() {
-        localStorage.removeItem('infos');
-        location.reload();
-      }
-    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"></script>
+    <script src="./v2-2.js"></script>
   </body>
 </html>

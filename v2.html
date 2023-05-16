@@ -16,11 +16,18 @@
     <div class="container m-0 p-0">
       <div class="row m-0">
         <div class="input-group m-0 p-1">
-          <span class="input-group-text w-25" id="basic-addon1">Data</span>
+          <input
+            type="text"
+            id="diaSemana"
+            disabled
+            class="form-control w-50 text-center"
+            placeholder="Dia da semana"
+            aria-label="Dia da semana"
+            aria-describedby="basic-addon1" />
           <input
             type="number"
             id="dia"
-            class="form-control"
+            class="form-control w-25 text-center"
             placeholder="Dia"
             aria-label="Dia"
             aria-describedby="basic-addon1" />
@@ -28,31 +35,16 @@
             onchange="checkMonth()"
             type="number"
             id="mes"
-            class="form-control"
+            class="form-control w-25 text-center"
             placeholder="Mês"
             aria-label="Mês"
             aria-describedby="basic-addon1" />
         </div>
       </div>
-
-      <div class="row m-0">
-        <div class="input-group m-0 p-1">
-          <span class="input-group-text w-50" id="basic-addon1">Hoje</span>
-          <input
-            type="text"
-            id="diaSemana"
-            disabled
-            class="form-control w-50"
-            placeholder="Dia da semana"
-            aria-label="Dia da semana"
-            aria-describedby="basic-addon1" />
-        </div>
-      </div>
-
       <div class="row m-0">
         <div class="input-group m-0 p-1">
           <span class="input-group-text w-25" id="basic-addon1">Rota</span>
-          <span class="input-group-text w-25" id="basic-addon1">BR</span>
+          <span class="input-group-text w-25 text-end" id="basic-addon1">BR</span>
           <input
             type="number"
             id="rotaSap"
@@ -217,40 +209,68 @@
 
       <div class="row m-0">
         <div class="input-group m-0 p-1">
-          <span class="input-group-text w-50" id="basic-addon1">Meta da Semana</span>
+          <span class="input-group-text w-50" id="basic-addon1">Meta da semana</span>
           <input
             type="number"
             id="metaSemana"
             class="form-control w-50"
-            placeholder="Meta da Semana"
-            aria-label="Meta da Semana"
+            placeholder="Meta da semana"
+            aria-label="Meta da semana"
             aria-describedby="basic-addon1" />
         </div>
       </div>
 
       <div class="row m-0">
         <div class="input-group m-0 p-1">
-          <span class="input-group-text w-50" id="basic-addon1">Venda Semana</span>
+          <span class="input-group-text w-50" id="basic-addon1">Venda semana ontem</span>
           <input
             type="number"
             id="vendaSemana"
-            disabled
             class="form-control w-50"
-            placeholder="Venda da Semana"
-            aria-label="Venda da Semana"
+            placeholder="Venda da semana"
+            aria-label="Venda da semana"
             aria-describedby="basic-addon1" />
         </div>
       </div>
 
       <div class="row m-0">
         <div class="input-group m-0 p-1">
-          <span class="input-group-text w-50" id="basic-addon1">Venda Semana +hoje</span>
+          <span class="input-group-text w-50" id="basic-addon1">Venda semana +hoje</span>
           <input
             type="number"
             id="vendaSemanaAtual"
+            disabled
             class="form-control w-50"
-            placeholder="Venda Semana +hoje"
-            aria-label="Venda Semana +hoje"
+            placeholder="Venda semana +hoje"
+            aria-label="Venda semana +hoje"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">Falta p/meta</span>
+          <input
+            type="number"
+            id="faltaMeta"
+            disabled
+            class="form-control w-50"
+            placeholder="Falta p/meta"
+            aria-label="Falta p/meta"
+            aria-describedby="basic-addon1" />
+        </div>
+      </div>
+
+      <div class="row m-0">
+        <div class="input-group m-0 p-1">
+          <span class="input-group-text w-50" id="basic-addon1">% Semana</span>
+          <input
+            type="number"
+            id="porcentSemana"
+            disabled
+            class="form-control w-50"
+            placeholder="% Semana"
+            aria-label="% Semana"
             aria-describedby="basic-addon1" />
         </div>
       </div>
@@ -262,13 +282,13 @@
 
       <div class="row m-0">
         <div class="input-group m-0 p-1">
-          <span class="input-group-text w-50" id="basic-addon1">Venda atual mês</span>
+          <span class="input-group-text w-50" id="basic-addon1">Venda mês ontem</span>
           <input
             type="number"
             id="vendaMes"
             class="form-control w-50"
-            placeholder="Venda atual mês"
-            aria-label="Venda atual mês"
+            placeholder="Venda mês ontem"
+            aria-label="Venda mês ontem"
             aria-describedby="basic-addon1" />
         </div>
       </div>
@@ -336,16 +356,12 @@
       </div>
       <hr class="mt-1" />
 
-      <div class="d-flex justify-content-around">
-        <div class="d-flex justify-content-center">
-          <button id="btnSubmit" type="button" class="btn btn-success mb-2">Gerar texto</button>
-        </div>
-        <div class="d-flex justify-content-center">
-          <a id="btnSend" type="button" class="btn btn-success mb-2" onclick="sendMsg()" target="_blank"
-            >Enviar texto</a
-          >
-        </div>
+      <!-- <div class="d-flex justify-content-around"> -->
+      <div class="d-flex justify-content-center">
+        <button id="btnSubmit" type="button" class="btn btn-success mb-2">Gerar texto</button>
       </div>
+
+      <!-- </div> -->
 
       <div class="form-floating p-2">
         <textarea
@@ -356,8 +372,13 @@
         <label for="msgContent">Texto:</label>
       </div>
 
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-around">
         <button onclick="reset()" id="btnReset" type="button" class="btn btn-danger mb-2">Resetar</button>
+        <div class="d-flex justify-content-center">
+          <a id="btnSend" type="button" class="btn btn-success mb-2" onclick="sendMsg()" target="_blank"
+            >Enviar texto</a
+          >
+        </div>
       </div>
     </div>
     <script
