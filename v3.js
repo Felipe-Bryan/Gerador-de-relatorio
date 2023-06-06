@@ -1,5 +1,6 @@
-const diaIpt = document.getElementById('dia');
-const mesIpt = document.getElementById('mes');
+// const diaIpt = document.getElementById('dia');
+// const mesIpt = document.getElementById('mes');
+const dataIpt = document.getElementById('data');
 const rotaSapIpt = document.getElementById('rotaSap');
 const metaDiaIpt = document.getElementById('metaDia');
 const vendaDiaIpt = document.getElementById('vendaDia');
@@ -11,6 +12,7 @@ const porcentEfetIpt = document.getElementById('percentEfetiva');
 const efetivaSemanaIpt = document.getElementById('efetivaSemana');
 const positFoco1Ipt = document.getElementById('positFoco1');
 const positFoco2Ipt = document.getElementById('positFoco2');
+const positFoco3Ipt = document.getElementById('positFoco3');
 const metaSemanaIpt = document.getElementById('metaSemana');
 const vendaSemanaIpt = document.getElementById('vendaSemana');
 const vendaSemanaAtualIpt = document.getElementById('vendaSemanaAtual');
@@ -29,8 +31,13 @@ const semana = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Qui
 const d = new Date();
 const month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
-diaIpt.value = d.getDate();
-mesIpt.value = month[d.getMonth()];
+const dia = d.getDate();
+const mes = month[d.getMonth()];
+
+dataIpt.value = `${dia}/${mes}`;
+
+// diaIpt.value = d.getDate();
+// mesIpt.value = month[d.getMonth()];
 
 document.getElementById('diaSemana').value = semana[d.getDay()];
 
@@ -84,7 +91,6 @@ function copiarTexto() {
 }
 
 function saveToStorage() {
-  let mes = Number(mesIpt.value);
   let rotaSap = Number(rotaSapIpt.value);
   let efetivasSemana = Number(efetivaSemanaIpt.value);
   let metaDia = Number(metaDiaIpt.value);
@@ -143,7 +149,7 @@ if (diaSemanaIpt.value == 'Segunda-Feira') {
 
 function checkMonth() {
   let currentMonth = infos.mes;
-  let newMonth = mesIpt.value;
+  let newMonth = mes;
 
   if (currentMonth !== newMonth) {
     let confirmation = confirm('Deseja iniciar um novo mês?');
@@ -285,7 +291,7 @@ function gerarTexto() {
     efetivaTotalText = `${efetivasDRIpt.value} + ${efetivasFRIpt.value}`;
   }
 
-  const texto = `Data: ${diaIpt.value}/${mesIpt.value}
+  const texto = `Data: ${dataIpt.value}
 Rota: BR${rotaSapIpt.value}
 
 \u{27A1} *FATURAMENTO*
@@ -304,10 +310,11 @@ Rota: BR${rotaSapIpt.value}
 \u{1F4CB}\u{1F4C8}
 *Panetini:* ${positFoco1Ipt.value}
 *Torcida:* ${positFoco2Ipt.value}
+*Amendoim:* ${positFoco3Ipt.value}
 
 \u{1F449} *META semana:* R$ ${metaSemanaIpt.value}
 \u{1F449} *Real semana:* R$ ${vendaSemanaAtualIpt.value}
-\u{2611} *% Objetivo semana:* ${porcentSemanaIpt.value}%
+\u{2705} *% Objetivo semana:* ${porcentSemanaIpt.value}%
 \u{1F449} *Falta p/ Meta semana:* R$ ${faltaMetaIpt.value}
 \u{1F449} *Real mês:* R$ ${vendaMesAtualIpt.value}`;
 
