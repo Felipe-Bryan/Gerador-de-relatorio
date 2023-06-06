@@ -1,5 +1,3 @@
-// const diaIpt = document.getElementById('dia');
-// const mesIpt = document.getElementById('mes');
 const dataIpt = document.getElementById('data');
 const rotaSapIpt = document.getElementById('rotaSap');
 const metaDiaIpt = document.getElementById('metaDia');
