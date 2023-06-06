@@ -34,10 +34,7 @@ const month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11',
 const dia = d.getDate();
 const mes = month[d.getMonth()];
 
-dataIpt.value = `${dia}/${mes}`;
-
-// diaIpt.value = d.getDate();
-// mesIpt.value = month[d.getMonth()];
+dataIpt.value = `${dia < 10 ? `0${dia}` : dia}/${mes}`;
 
 document.getElementById('diaSemana').value = semana[d.getDay()];
 
